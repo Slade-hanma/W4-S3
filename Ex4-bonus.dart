@@ -23,15 +23,23 @@ class _MyAppState extends State<MyApp> {
           title: Text('Score Bar'),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildScoreCard('My score in Flutter', flutterScore, Colors.green),
-              SizedBox(height: 16.0),
-              _buildScoreCard('My score in Dart', dartScore, Colors.lightGreen),
-              SizedBox(height: 16.0),
-              _buildScoreCard('My score in React', reactScore, Color(0xFF006400)), // Use the Color constructor to create the dark green color
-            ],
+          child: Container(
+            width: 500,
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildScoreCard('My score in Flutter', flutterScore, Colors.green.withOpacity(0.25)),
+                SizedBox(height: 16.0),
+                _buildScoreCard('My score in Dart', dartScore, Colors.green.withOpacity(0.5)),
+                SizedBox(height: 16.0),
+                _buildScoreCard('My score in React', reactScore, Colors.green),
+              ],
+            ),
           ),
         ),
       ),
@@ -39,8 +47,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _buildScoreCard(String title, int score, Color color) {
-    return Padding(
+    return Container(
+      width: double.infinity,
       padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,7 +83,7 @@ class _MyAppState extends State<MyApp> {
           ),
           SizedBox(height: 8.0),
           Container(
-            height: 16.0,
+            height: 20.0,
             decoration: BoxDecoration(
               border: Border.all(
                 color: score == 0 ? Colors.grey : color,
